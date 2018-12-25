@@ -1,0 +1,52 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '2.1.1.RELEASE'
+    id "io.spring.dependency-management" version "1.0.6.RELEASE"
+}
+
+group 'sevenkey.open'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+repositories {
+    // 优先本地文件
+    flatDir {
+        dirs '/Users/weijianyu/.m2/repository'
+    }
+    // maven阿里镜像
+    maven {
+        url "http://maven.aliyun.com/nexus/content/groups/public/"
+    }
+}
+
+dependencies {
+    // spring boot
+    compile('org.springframework.boot:spring-boot-starter-web') {
+        exclude group: 'ch.qos.logback'
+        exclude group: 'org.slf4j'
+        exclude group: 'org.apache.logging.log4j'
+    }
+    // log
+    compile group: 'org.apache.logging.log4j', name: 'log4j-core', version: '2.11.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-api', version: '2.11.1'
+    compile group: 'org.apache.logging.log4j', name: 'log4j-slf4j-impl', version: '2.11.1'
+    compile group: 'org.slf4j', name: 'slf4j-api', version: '1.7.25'
+    // lombok 官方推荐方式
+    annotationProcessor 'org.projectlombok:lombok:1.18.2'
+    compileOnly 'org.projectlombok:lombok:1.18.2'
+    testAnnotationProcessor 'org.projectlombok:lombok:1.18.2'
+    testCompileOnly 'org.projectlombok:lombok:1.18.2'
+    // guava
+    compile group: 'com.google.guava', name: 'guava', version: '20.0'
+    // lang3
+    compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.8.1'
+    // fastjson
+    compile group: 'com.alibaba', name: 'fastjson', version: '1.2.54'
+
+    testCompile('org.springframework.boot:spring-boot-starter-test') {
+        exclude group: 'ch.qos.logback'
+        exclude group: 'org.slf4j'
+        exclude group: 'org.apache.logging.log4j'
+    }
+}
