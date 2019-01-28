@@ -55,7 +55,9 @@ public class ParamValidControllerTest {
                 .contentType(MediaType.APPLICATION_JSON)).andReturn();
 
         ResponseVO<String> response = new ResponseVO<>();
-        Assert.assertEquals(response.fail(ResponseEnum.PARAM_FAIL, "id must gt 0"), JSON.parseObject(result.getResponse().getContentAsString(), ResponseVO.class));
+        ResponseVO<String> test1 = response.fail(ResponseEnum.PARAM_FAIL, "id must gt 0");
+        ResponseVO<String> test2 = JSON.parseObject(result.getResponse().getContentAsString(), ResponseVO.class);
+        Assert.assertEquals(test1, test2);
     }
 
     @Test

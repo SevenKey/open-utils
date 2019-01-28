@@ -16,6 +16,12 @@ import java.util.Set;
  * @author weijianyu
  */
 public class ParamValidUtils {
+    private static Validator validator;
+
+    static {
+        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
+        validator = factory.getValidator();
+    }
 
     private ParamValidUtils() {
     }
@@ -26,7 +32,7 @@ public class ParamValidUtils {
      *
      * @param bindingResult void
      */
-    public static void combErrorAllMessage(BindingResult bindingResult) throws ParamException{
+    public static void combErrorAllMessage(BindingResult bindingResult) throws ParamException {
         if (!bindingResult.hasErrors()) {
             return;
         }
@@ -45,8 +51,6 @@ public class ParamValidUtils {
      * @throws ParamException 自定义非运行时参数异常
      */
     public static <T> void commonParamValid(@Valid T param) throws ParamException {
-        ValidatorFactory factory = Validation.buildDefaultValidatorFactory();
-        Validator validator = factory.getValidator();
         Set<ConstraintViolation<T>> violations = validator.validate(param);
         Iterator<ConstraintViolation<T>> iter = violations.iterator();
         StringBuilder error = new StringBuilder();
