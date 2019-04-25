@@ -32,4 +32,5 @@ public enum ResponseEnum {
 
     public String getMessage() {
         return message;
-    }}
+    }
+}

@@ -15,11 +15,11 @@ import javax.servlet.http.HttpServletRequest;
  * @author weijianyu
  */
 @ControllerAdvice
+@ResponseBody
 public class DefaultControllerAdvice {
-    private static final Logger logger = LoggerFactory.getLogger(DefaultControllerAdvice.class);
+    private final Logger logger = LoggerFactory.getLogger(DefaultControllerAdvice.class);
 
     @ExceptionHandler(value = ParamException.class)
-    @ResponseBody
     public ResponseVO<String> dealParamValidException(ParamException e, HttpServletRequest request) {
         logger.info("controller param valid request:{} errorMessage:{}", request, e.getErrorMessage());
         ResponseVO<String> response = new ResponseVO<>();

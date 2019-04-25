@@ -11,7 +11,7 @@ import sevenkey.open.utils.common.enums.ResponseEnum;
  */
 @RestController
 public class AliveController {
-    private static final Logger logger = LoggerFactory.getLogger(AliveController.class);
+    private final Logger logger = LoggerFactory.getLogger(AliveController.class);
 
     @GetMapping(value = "alive")
     public String alive() {

@@ -10,6 +10,7 @@ import sevenkey.open.utils.common.enums.ResponseEnum;
  */
 @Data
 public class ResponseVO<T> {
+
     private ResponseVO.HttpStatus status;
     private String message;
     private Integer code;

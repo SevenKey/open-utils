@@ -21,12 +21,12 @@ import javax.validation.Valid;
  */
 @RestController
 public class ParamValidController {
-    private static final Logger logger = LoggerFactory.getLogger(ParamValidController.class);
+    private final Logger logger = LoggerFactory.getLogger(ParamValidController.class);
 
     @PostMapping(value = "param/valid")
     public ResponseVO<String> paramValid(@Valid @RequestBody ParamTestBody body, BindingResult result) throws ParamException {
-        ParamValidUtils.combErrorAllMessage(result);
         logger.info("request log param/valid body:{}", body);
+        ParamValidUtils.combErrorAllMessage(result);
         ResponseVO<String> response = new ResponseVO<>();
         return response.success(ResponseEnum.SUCCESS, ResponseEnum.SUCCESS.getMessage());
     }

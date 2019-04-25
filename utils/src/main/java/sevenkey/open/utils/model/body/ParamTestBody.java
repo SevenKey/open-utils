@@ -14,7 +14,6 @@ import javax.validation.constraints.NotNull;
  */
 @Data
 public class ParamTestBody {
-
     /**
      * id不为空 并且id>0
      */
