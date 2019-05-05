@@ -7,8 +7,6 @@ import sevenkey.open.utils.exception.ParamException;
 import sevenkey.open.utils.model.body.ParamTestBody;
 import sevenkey.open.utils.utils.ParamValidUtils;
 
-import java.io.FileWriter;
-
 
 /**
  * 通用入参校验 测试类
