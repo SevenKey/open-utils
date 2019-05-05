@@ -58,24 +58,4 @@ public class ParamValidUtilsMyTest {
         body.setMessage(StringUtils.EMPTY);
         ParamValidUtils.commonParamValid(body);
     }
-
-    @Test
-    public void test() throws Exception {
-        int count = 1;
-        int size = 2000;
-        int key = 30171678;
-        int sum = 0;
-
-        FileWriter writer = new FileWriter(this.getClass().getResource("").getPath() + "sql.text");
-        while (count <= key) {
-            sum += 1;
-            writer.write("UPDATE outbound_bill SET scheduled_delivery_date = DATE_FORMAT(DATE_ADD(order_time, INTERVAL 1 DAY), '%Y-%m-%d') WHERE id BETWEEN " + count + " AND " + (count + size) + ";\n");
-            if (sum % 1000 == 0) {
-                writer.write("\n");
-                writer.write("\n");
-            }
-            count += size;
-        }
-        writer.close();
-    }
 }
