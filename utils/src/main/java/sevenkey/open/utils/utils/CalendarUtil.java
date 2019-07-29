@@ -114,6 +114,10 @@ public class CalendarUtil {
             calendar.add(line);
         }
 
+        printCalendar(calendar);
+    }
+
+    private static void printCalendar(List<List<Integer>> calendar) {
         calendar.forEach(line -> {
             line.forEach(day -> {
                 System.out.print(String.format("%02d", day) + "  ");
