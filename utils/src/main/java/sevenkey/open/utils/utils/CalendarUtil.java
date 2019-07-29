@@ -11,20 +11,22 @@ import java.util.List;
  */
 public class CalendarUtil {
 
-    private static final int START_YEAR = 1990;
-
     /**
-     * 包含31天的月份
+     * 其实年份
      */
-    private static final List<Integer> THIRTY_ONE_DAYS_MONTH = Lists.newArrayList(1, 3, 5, 7, 8, 10, 12);
+    private static final int START_YEAR = 1990;
     /**
      * 特殊2月份
      */
-    private static final List<Integer> SPECIAL_MONTH = Lists.newArrayList(2);
+    private static final Integer SPECIAL_MONTH = 2;
     /**
-     * 正常30天月份
+     * 星期数
      */
-    private static final List<Integer> THIRTY_DAYS_MONTH = Lists.newArrayList(4, 6, 9, 11);
+    private static final Integer WEEK_DAYS = 7;
+    /**
+     * 12月
+     */
+    private static final List<Integer> MONTH_DAYS = Lists.newArrayList(0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31);
 
     /**
      * 判断输入的年份是否是闰年
@@ -55,21 +57,10 @@ public class CalendarUtil {
         }
 
         for (int currentMonth = 1; currentMonth < month; currentMonth++) {
+            totalDays += MONTH_DAYS.get(currentMonth);
             // 2月份
-            if (SPECIAL_MONTH.contains(currentMonth)) {
-                if (isLeapYear(year)) {
-                    totalDays += 29;
-                } else {
-                    totalDays += 28;
-                }
-            }
-            // 普通月份
-            if (THIRTY_DAYS_MONTH.contains(currentMonth)) {
-                totalDays += 30;
-            }
-            // 1,3,5,7,8,10,12 特殊月份
-            if (THIRTY_ONE_DAYS_MONTH.contains(currentMonth)) {
-                totalDays += 31;
+            if (SPECIAL_MONTH == currentMonth && isLeapYear(year)) {
+                totalDays += 1;
             }
         }
 
@@ -97,38 +88,25 @@ public class CalendarUtil {
         List<List<Integer>> calendar = Lists.newArrayList();
 
         int countDay = 1;
-        int monthDay = 0;
-        // 2月份
-        if (SPECIAL_MONTH.contains(month)) {
-            if (isLeapYear(year)) {
-                monthDay = 29;
-            } else {
-                monthDay = 28;
-            }
+        int monthDay = MONTH_DAYS.get(month);
+        // 润2月份
+        if (SPECIAL_MONTH == month && isLeapYear(year)) {
+            monthDay += 1;
         }
-        if (THIRTY_DAYS_MONTH.contains(month)) {
-            monthDay = 30;
-        }
-        if (THIRTY_ONE_DAYS_MONTH.contains(month)) {
-            monthDay = 31;
-        }
-
-        int weekDay = getWeek(year, month);
-        List<Integer> firstLine = Lists.newArrayList();
-        for (int day = 0; day < 7; day++) {
-            if (day < weekDay) {
-                firstLine.add(0);
-                continue;
-            }
-            firstLine.add(countDay++);
-        }
-        calendar.add(firstLine);
 
         while (countDay <= monthDay) {
             List<Integer> line = Lists.newArrayList();
-            for (int day = 0; day < 7; day++) {
-                line.add(countDay++);
+            int day = 0;
 
+            if (countDay == 1) {
+                day = getWeek(year, month);
+                for (int i = 0; i < day; i++) {
+                    line.add(0);
+                }
+            }
+
+            for (; day < WEEK_DAYS; day++) {
+                line.add(countDay++);
                 if (countDay > monthDay) {
                     break;
                 }

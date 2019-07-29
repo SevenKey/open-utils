@@ -16,8 +16,7 @@ public class CalendarUtilTest {
         Assert.assertTrue(CalendarUtil.isLeapYear(2000));
         Assert.assertTrue(CalendarUtil.isLeapYear(2004));
         Assert.assertTrue(CalendarUtil.isLeapYear(2012));
-
-
+        
         Assert.assertFalse(CalendarUtil.isLeapYear(2013));
         Assert.assertFalse(CalendarUtil.isLeapYear(2019));
         Assert.assertFalse(CalendarUtil.isLeapYear(2010));
