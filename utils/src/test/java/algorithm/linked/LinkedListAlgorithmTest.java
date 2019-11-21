@@ -8,6 +8,33 @@ public class LinkedListAlgorithmTest {
 
     private LinkedListAlgorithm linkedListAlgorithm = new LinkedListAlgorithm();
 
+    @Test
+    public void testMergeTwoLists() {
+        LinkedListAlgorithm.Node l1 = linkedListAlgorithm.new Node();
+        l1.setData(1);
+        LinkedListAlgorithm.Node l1Second = linkedListAlgorithm.new Node();
+        l1Second.setData(2);
+        l1.setNext(l1Second);
+        LinkedListAlgorithm.Node l1Third = linkedListAlgorithm.new Node();
+        l1Third.setData(3);
+        l1Second.setNext(l1Third);
+
+        LinkedListAlgorithm.Node l2 = linkedListAlgorithm.new Node();
+        l2.setData(4);
+        LinkedListAlgorithm.Node l2Second = linkedListAlgorithm.new Node();
+        l2Second.setData(5);
+        l2.setNext(l2Second);
+
+        LinkedListAlgorithm.Node mergeHead = linkedListAlgorithm.mergeTwoLists(l1, l2);
+        Assert.assertNotNull(mergeHead);
+        LinkedListAlgorithm.Node p = mergeHead;
+        int value = 1;
+        while (null != p) {
+            Assert.assertEquals(value, p.getData());
+            p = p.getNext();
+            value++;
+        }
+    }
 
     @Test
     public void testReverse0() {

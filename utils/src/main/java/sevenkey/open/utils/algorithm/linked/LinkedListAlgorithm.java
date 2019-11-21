@@ -94,6 +94,38 @@ public class LinkedListAlgorithm {
     }
 
     /**
+     * 合并链表
+     *
+     * @param l1 第一个链表
+     * @param l2 第二个链表
+     * @return 合并链表
+     */
+    public Node mergeTwoLists(Node l1, Node l2) {
+        Node h = new Node();
+        Node p = h;
+
+        while (null != l1 && null != l2) {
+            if(l1.getData()<l2.getData()){
+                p.setNext(l1);
+                l1 = l1.getNext();
+            }else{
+                p.setNext(l2);
+                l2 = l2.getNext();
+            }
+            p = p.getNext();
+        }
+        if(null != l1){
+            p.setNext(l1);
+        }
+        if(null != l2){
+            p.setNext(l2);
+        }
+
+        return h.getNext();
+    }
+
+
+    /**
      * 寻找中心节点
      *
      * @param head 头结点
