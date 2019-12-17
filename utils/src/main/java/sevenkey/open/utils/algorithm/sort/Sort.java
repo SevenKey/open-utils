@@ -138,5 +138,145 @@ public class Sort {
 
         return j;
     }
+
+    /**
+     * 二分搜索
+     *
+     * @param array 数组
+     * @param n     长度
+     * @param value 查找的值
+     * @return 返回下标
+     */
+    public static int bSearch(int[] array, int n, int value) {
+        int low = 0;
+        int high = n - 1;
+
+        while (low <= high) {
+            int middle = low + (high - low) / 2;
+
+            if (array[middle] == value) {
+                return middle;
+            } else if (array[middle] > value) {
+                high = middle - 1;
+            } else {
+                low = middle + 1;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 二分搜索 第一个相同的
+     *
+     * @param array 数组
+     * @param n     长度
+     * @param value 查找的值
+     * @return 返回下标
+     */
+    public static int bSearchFirstEquals(int[] array, int n, int value) {
+        int low = 0;
+        int high = n - 1;
+
+        while (low <= high) {
+            int middle = low + (high - low) / 2;
+
+            if (array[middle] == value) {
+                if (middle == 0 || array[middle - 1] < value) {
+                    return middle;
+                } else {
+                    high = middle - 1;
+                }
+            } else if (array[middle] > value) {
+                high = middle - 1;
+            } else {
+                low = middle + 1;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 二分搜索 最后一个相同的
+     *
+     * @param array 数组
+     * @param n     长度
+     * @param value 查找的值
+     * @return 返回下标
+     */
+    public static int bSearchLastEquals(int[] array, int n, int value) {
+        int low = 0;
+        int high = n - 1;
+
+        while (low <= high) {
+            int middle = low + (high - low) / 2;
+
+            if (array[middle] == value) {
+                if (middle == n - 1 || array[middle + 1] > value) {
+                    return middle;
+                } else {
+                    low = middle + 1;
+                }
+            } else if (array[middle] > value) {
+                high = middle - 1;
+            } else {
+                low = middle + 1;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 二分搜索 第一个大于等于
+     *
+     * @param array 数组
+     * @param n     长度
+     * @param value 查找的值
+     * @return 返回下标
+     */
+    public static int bSearchFirstGTE(int[] array, int n, int value) {
+        int low = 0;
+        int high = n - 1;
+
+        while (low <= high) {
+            int middle = low + (high - low) / 2;
+
+            if (array[middle] >= value) {
+                if (middle == 0 || array[middle - 1] < value) {
+                    return middle;
+                }
+                high = middle - 1;
+            } else {
+                low = middle + 1;
+            }
+        }
+        return -1;
+    }
+
+    /**
+     * 二分搜索 最后一个小于等于
+     *
+     * @param array 数组
+     * @param n     长度
+     * @param value 查找的值
+     * @return 返回下标
+     */
+    public static int bSearchLastLTE(int[] array, int n, int value) {
+        int low = 0;
+        int high = n - 1;
+
+        while (low <= high) {
+            int middle = low + (high - low) / 2;
+
+            if (array[middle] > value) {
+                high = middle - 1;
+            } else {
+                if (middle == n - 1 || array[middle + 1] > value) {
+                    return middle;
+                }
+                low = middle + 1;
+            }
+        }
+        return -1;
+    }
 }
 

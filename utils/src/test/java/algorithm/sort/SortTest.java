@@ -70,4 +70,64 @@ public class SortTest {
         Assert.assertEquals(1, Sort.searchK(array, 0, array.length - 1, 8));
         Assert.assertEquals(0, Sort.searchK(array, 0, array.length - 1, 9));
     }
+
+    @Test
+    public void testBSearch() {
+        int[] array = new int[]{1, 6, 9, 12, 16, 17, 18, 19, 20, 21, 22, 23};
+        Assert.assertEquals(-1, Sort.bSearch(array, array.length, 26));
+        Assert.assertEquals(0, Sort.bSearch(array, array.length, 1));
+        Assert.assertEquals(1, Sort.bSearch(array, array.length, 6));
+        Assert.assertEquals(2, Sort.bSearch(array, array.length, 9));
+        Assert.assertEquals(3, Sort.bSearch(array, array.length, 12));
+        Assert.assertEquals(4, Sort.bSearch(array, array.length, 16));
+        Assert.assertEquals(5, Sort.bSearch(array, array.length, 17));
+        Assert.assertEquals(6, Sort.bSearch(array, array.length, 18));
+        Assert.assertEquals(9, Sort.bSearch(array, array.length, 21));
+        Assert.assertEquals(10, Sort.bSearch(array, array.length, 22));
+        Assert.assertEquals(11, Sort.bSearch(array, array.length, 23));
+    }
+
+    @Test
+    public void testBSearchFirstEquals() {
+        int[] array = new int[]{1, 1, 1, 6, 9, 12, 12, 12, 18, 19, 20, 20, 20, 20, 20, 20, 22, 23, 23};
+        Assert.assertEquals(-1, Sort.bSearchFirstEquals(array, array.length, 26));
+        Assert.assertEquals(0, Sort.bSearchFirstEquals(array, array.length, 1));
+        Assert.assertEquals(5, Sort.bSearchFirstEquals(array, array.length, 12));
+        Assert.assertEquals(10, Sort.bSearchFirstEquals(array, array.length, 20));
+        Assert.assertEquals(17, Sort.bSearchFirstEquals(array, array.length, 23));
+    }
+
+    @Test
+    public void testBSearchLastEquals() {
+        int[] array = new int[]{1, 1, 1, 6, 9, 12, 12, 12, 18, 19, 20, 20, 20, 20, 20, 20, 22, 23, 23};
+        Assert.assertEquals(-1, Sort.bSearchLastEquals(array, array.length, 26));
+        Assert.assertEquals(2, Sort.bSearchLastEquals(array, array.length, 1));
+        Assert.assertEquals(7, Sort.bSearchLastEquals(array, array.length, 12));
+        Assert.assertEquals(15, Sort.bSearchLastEquals(array, array.length, 20));
+        Assert.assertEquals(18, Sort.bSearchLastEquals(array, array.length, 23));
+    }
+
+    @Test
+    public void testBSearchFirstGTE() {
+        int[] array = new int[]{1, 1, 1, 6, 9, 12, 12, 12, 18, 19, 20, 20, 20, 20, 20, 20, 22, 23, 23};
+        Assert.assertEquals(-1, Sort.bSearchFirstGTE(array, array.length, 26));
+        Assert.assertEquals(0, Sort.bSearchFirstGTE(array, array.length, 1));
+        Assert.assertEquals(5, Sort.bSearchFirstGTE(array, array.length, 12));
+        Assert.assertEquals(10, Sort.bSearchFirstGTE(array, array.length, 20));
+        Assert.assertEquals(17, Sort.bSearchFirstGTE(array, array.length, 23));
+        Assert.assertEquals(3, Sort.bSearchFirstGTE(array, array.length, 5));
+        Assert.assertEquals(8, Sort.bSearchFirstGTE(array, array.length, 17));
+    }
+
+    @Test
+    public void testBSearchLastLTE() {
+        int[] array = new int[]{1, 1, 1, 6, 9, 12, 12, 12, 18, 19, 20, 20, 20, 20, 20, 20, 22, 23, 23};
+        Assert.assertEquals(18, Sort.bSearchLastLTE(array, array.length, 26));
+        Assert.assertEquals(2, Sort.bSearchLastLTE(array, array.length, 1));
+        Assert.assertEquals(7, Sort.bSearchLastLTE(array, array.length, 12));
+        Assert.assertEquals(15, Sort.bSearchLastLTE(array, array.length, 20));
+        Assert.assertEquals(18, Sort.bSearchLastLTE(array, array.length, 23));
+        Assert.assertEquals(2, Sort.bSearchLastLTE(array, array.length, 5));
+        Assert.assertEquals(7, Sort.bSearchLastLTE(array, array.length, 17));
+    }
 }
