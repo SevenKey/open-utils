@@ -1,6 +1,7 @@
 package service;
 
 import org.assertj.core.util.Lists;
+import org.junit.Test;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
@@ -49,7 +50,8 @@ public class ArithmeticTest {
         }
     }
 
+    @Test
     public void testFindKMuiltResult() {
-
+        System.out.println(ArithmeticTest.class.getSimpleName());
     }
 }
